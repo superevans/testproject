@@ -81,5 +81,23 @@ def register(request):
     else:
         return render(request, 'register.html')
         
+def login(request):
+    if request.method == 'POST': #check if thisi is after user submit data or not
+        username = request.POST['username']
+        password = request.POST['password']
 
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None: #if user is registered
+            auth.login(request, user)
+            return redirect('/')
+        else:
+            messages.info(request, 'Credentials invalid') 
+            return redirect('login')
+    else:
+        return render(request, 'login.html')
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
     
