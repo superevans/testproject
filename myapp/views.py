@@ -52,11 +52,6 @@ def index(request):
 
     return render(request, 'index.html', {'features': features})
 
-def counter(request):
-    words = request.POST['words'] ##Must have POST if using form method POST. GET if GET
-    amount_of_words = len(words.split())
-    return render(request, 'counter.html', {'amount': amount_of_words})
-
 def register(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -101,3 +96,15 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
     
+def post(request, pk):
+    return render(request, 'post.html', {'pk': pk})
+
+def counter(request):
+    posts = [1,2,3,'brp','dude', 'duda']
+    return render(request, 'counter.html', {'posts': posts})
+
+# old counter before Dynamic URL Routing
+# def counter(request):
+#     words = request.POST['words'] ##Must have POST if using form method POST. GET if GET
+#     amount_of_words = len(words.split())
+#     return render(request, 'counter.html', {'amount': amount_of_words})
