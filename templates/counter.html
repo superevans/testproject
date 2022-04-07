@@ -1,1 +1,6 @@
-The amount of words is {{amount}}
+<!-- Old Counter before dynamic routing -->
+<!-- The amount of words is {{amount}} -->
+
+{% for post in posts %}
+<h1><a href="{% url 'post' post %}">Post</h1>
+{% endfor %}
